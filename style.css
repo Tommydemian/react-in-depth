@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: inherit;
+}
+
+.container {
+	max-width: 1280px;
+	padding-inline: 2rem;
+	margin-inline: auto;
+	box-sizing: content-box;
+}
+
+.flex-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
