@@ -1,56 +1,12 @@
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-document.addEventListener("DOMContentLoaded", function () {
-    var mainSection = document.getElementById("main-section");
-    function createElement(tagName, props, children) {
-        return {
-            tagName: tagName,
-            props: props,
-            children: children,
-        };
-    }
-    function renderEl(tagName, props, placeToRender) {
-        var children = [];
-        for (var _i = 3; _i < arguments.length; _i++) {
-            children[_i - 3] = arguments[_i];
-        }
-        // virtual Node creation
-        var el = createElement(tagName, props, children);
-        // TAGNAME
-        var nodeEl = el.tagName === "TEXT_ELEMENT"
-            ? document.createTextNode("")
-            : document.createElement(el.tagName);
-        // PROPS
-        if (nodeEl instanceof HTMLElement) {
-            var keys = Object.keys(el.props);
-            for (var i = 0; i < keys.length; i++) {
-                nodeEl.setAttribute(keys[i], String(props[keys[i]]));
-            }
-        }
-        // CHILDREN
-        el.children.map(function (val) {
-            if (typeof val !== "object") {
-                var textEl = document.createTextNode(String(val));
-                nodeEl.appendChild(textEl);
-            }
-            else {
-                renderEl.apply(void 0, __spreadArray([val.tagName,
-                    val.props,
-                    nodeEl], val.children, false));
-            }
-        });
-        if (placeToRender) {
-            placeToRender.appendChild(nodeEl);
-        }
-    }
-    var container = document.querySelector("body");
-    console.log(container);
-    renderEl("h1", { title: "people", maxNum: 2 }, mainSection, "hello");
+import { createElement } from "./createElement.js";
+import { renderEl } from "./renderEl.js";
+document.addEventListener("DOMContentLoaded", () => {
+    const root = document.getElementById("root");
+    const mainSection = document.getElementById("main-section");
+    renderEl("h1", { title: "people", maxNum: 2 }, root, "hello");
+    // Ejemplo de uso de createElement, si quieres componerlo antes:
+    const sectionNode = createElement("section", {}, "Texto de ejemplo en un section.", createElement("p", {}, "Párrafo dentro del section."));
+    // Luego lo invocas así:
+    renderEl("article", { title: "people know about them" }, root, // Aquí asumes que `mainSection` es tu contenedor en el DOM
+    "Texto suelto directamente en article", createElement("div", {}, "Contenido dentro de un div"), createElement("h1", {}, "Un título H1"), createElement("button", { onClick: () => console.log("clicked") }, "log to the console"), createElement("ul", {}, createElement("li", {}, "Elemento 1"), createElement("li", {}, "Elemento 2")));
 });

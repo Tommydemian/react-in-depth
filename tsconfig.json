@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"esModuleInterop": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		// Puedes agregar:
+		"moduleResolution": "node" // suele ser el default
+		// "rootDir": "./src",         // si tu código fuente está en /src
+		// "outDir": "./dist",         // para indicar la carpeta de salida
+		// "verbatimModuleSyntax": true  // en TS 5.x, fuerza a no transformar 'import/export'
+	}
+}
