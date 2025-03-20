@@ -20,3 +20,8 @@ export function useState<T>(initialValue: T): [T, (newValue: T) => void] {
 
 	return [val, setter];
 }
+
+// feat: reset global state
+export function resetGlobalState() {
+	stateIndex = 0;
+}

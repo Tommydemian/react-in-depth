@@ -24,3 +24,19 @@ body {
 	align-items: center;
 	gap: 0.5rem;
 }
+
+#root {
+	max-width: 1280px;
+	padding-inline: 2rem;
+	margin-inline: auto;
+	box-sizing: content-box;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#root > article > * {
+	margin-bottom: 1rem;
+}
