@@ -1,4 +1,5 @@
-const globalStateAllocation: unknown[] = []; // storage
+const globalStateAllocation: unknown[] = [];
+import { emit } from "./event-bus/onStateChange";
 
 let stateIndex = 0;
 
@@ -16,12 +17,13 @@ export function useState<T>(initialValue: T): [T, (newValue: T) => void] {
 		} else {
 			globalStateAllocation[currenIndex] = param;
 		}
+		resetGlobalState();
+		emit("setter-fired", true);
 	};
 
 	return [val, setter];
 }
 
-// feat: reset global state
 export function resetGlobalState() {
 	stateIndex = 0;
 }

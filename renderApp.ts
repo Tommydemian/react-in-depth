@@ -1,9 +1,20 @@
+import { nodesStack } from "./nodesStack";
 import { createDomNode } from "./utils/createDomNode";
 import type { VirtualNode } from "./types";
-export function renderApp<T>(
-	rootContainer: HTMLElement | null,
-	stack: (VirtualNode | Text)[],
+
+let root: HTMLElement | null = null;
+window.addEventListener("DOMContentLoaded", () => {
+	root = document.getElementById("root");
+});
+
+export function renderApp(
+	rootContainer: HTMLElement | null = root,
+	stack: (VirtualNode | Text)[] = nodesStack,
 ) {
+	// 1st action
+	if (rootContainer?.innerHTML != null) {
+		rootContainer.innerHTML = "";
+	}
 	// create DOM node
 	for (const vNode of stack) {
 		if ("tagName" in vNode) {

@@ -1,7 +1,14 @@
+import { nodesStack } from "./nodesStack.js";
 import { createDomNode } from "./utils/createDomNode.js";
-export function renderApp(rootContainer, stack) {
-	// store domNodes
-	const domNodes = [];
+let root = null;
+window.addEventListener("DOMContentLoaded", () => {
+	root = document.getElementById("root");
+});
+export function renderApp(rootContainer = root, stack = nodesStack) {
+	// 1st action
+	if (rootContainer?.innerHTML != null) {
+		rootContainer.innerHTML = "";
+	}
 	// create DOM node
 	for (const vNode of stack) {
 		if ("tagName" in vNode) {

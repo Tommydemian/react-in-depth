@@ -1,7 +1,6 @@
-import { stack } from "./stack.js";
-import { renderApp } from "./renderApp.js";
+import { updateUI } from "./updateUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 	const root = document.getElementById("root");
-	renderApp(root, stack);
+	updateUI(root as HTMLElement);
 });

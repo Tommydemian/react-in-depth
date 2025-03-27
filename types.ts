@@ -8,3 +8,5 @@ export type VirtualNode = {
 };
 
 export type Child = string | number | VirtualNode;
+
+export type ManageStack = "populate" | "empty";
